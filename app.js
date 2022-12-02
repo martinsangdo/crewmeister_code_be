@@ -5,19 +5,17 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  , member = require('./routes/member')
   , mongoose = require('mongoose')
   , http = require('http')
   , path = require('path');
 
 var app = express();
 
-var DB_URL = "mongodb://localhost:27017/testdb";
-
 //Connect to mongodb
 var connect = function () {
   var options = { server: { socketOptions: { keepAlive: 1 } } };
-  mongoose.connect(DB_URL, options);
+  mongoose.connect(process.env.DB_URI, options);
 };
 connect();
 
@@ -41,7 +39,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.getuser);
+app.get('/member', member);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -1,0 +1,14 @@
+{
+  "name": "node1",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "*",
+    "express": "3.2.6",
+    "mongodb": ">= 0.9.6-7",
+    "mongoose": "^4.2.5"
+  }
+}

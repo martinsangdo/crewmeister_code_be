@@ -6,9 +6,13 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "ejs": "*",
-    "express": "3.2.6",
-    "mongodb": ">= 0.9.6-7",
-    "mongoose": "^4.2.5"
+    "express": "^4.17.1",
+    "express-rest-response": "^0.0.5",
+    "mongodb": "^2.2.36",
+    "mongoose": "^5.0.6"
   }
 }

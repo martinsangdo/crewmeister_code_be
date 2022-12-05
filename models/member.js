@@ -28,7 +28,7 @@ Member.prototype.find = function(condition, fields, resp_func){
     } else {
       var resp = {
         result : Constant.OK_CODE,
-        data : res,
+        data : res
       };
       resp_func(resp);
     }

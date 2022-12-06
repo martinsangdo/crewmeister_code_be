@@ -13,6 +13,7 @@ var express = require('express')
     ,bodyParser = require('body-parser')
 , path = require('path');
 var restResponse = require('express-rest-response');
+const cors = require('cors');
 
 require("dotenv").config();
 
@@ -40,6 +41,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 //========== define Rest response
 var rest_resp_options = {
   showStatusCode: true,

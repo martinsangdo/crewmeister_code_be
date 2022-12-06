@@ -19,9 +19,9 @@ router.get("/list", function(req, res){
         skip: 0,
         limit: Constant.DEFAULT_PAGE_LENGTH
     };
-    if (page_index >= 0 && page_limit > 0){
-        pagination['limit'] = page_limit;
-        pagination['skip'] = page_index * page_limit;
+    if (parseInt(page_index) >= 0 && parseInt(page_limit) > 0){
+        pagination['limit'] = parseInt(page_limit);
+        pagination['skip'] = parseInt(page_index) * parseInt(page_limit);
     }
     var utility = new Utility();
     if (utility.isNotBlank(type)){

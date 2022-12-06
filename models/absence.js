@@ -28,6 +28,7 @@ Absence.prototype.paging_list = function(condition, fields, pagination, sort, re
   Absence.find(condition).limit(pagination.limit).skip(pagination.skip).
     select(fields).sort(sort).exec(function(err, res) {
     if (err) {
+      console.log(err)
       var resp = {
         result : Constant.FAILED_CODE,
         message : Constant.SERVER_ERR

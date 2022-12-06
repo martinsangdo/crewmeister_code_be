@@ -38,19 +38,28 @@ router.get("/list", function(req, res){
     absence.paging_list(condition, fields, pagination, {'confirmedAt':-1}, function (absence_list){
         //search member info, if any
         if (absence_list.result == Constant.OK_CODE){
-            var member_ids = [];
-            absence_list.data.forEach(obj => {
-                member_ids.push(obj.userId);
-            });
-            //remove duplicated ids
-            var unique_member_ids = utility.removeDuplication(member_ids);
-            //
-            query_member_info(unique_member_ids, function(member_list){
-                //for saving server capability, let client parse the data
-                res.status(200).send({
-                    absences: absence_list.data,
-                    member_list: member_list.data
-                });
+            //find total items (no pagination)
+            absence.total(condition, function(resp_total){
+                if (resp_total.result == Constant.OK_CODE){
+                    var member_ids = [];
+                    absence_list.data.forEach(obj => {
+                        member_ids.push(obj.userId);
+                    });
+                    //remove duplicated ids
+                    var unique_member_ids = utility.removeDuplication(member_ids);
+                    //
+                    query_member_info(unique_member_ids, function(member_list){
+                        //for saving server capability, let client parse the data
+                        res.status(200).send({
+                            absences: absence_list.data,
+                            member_list: member_list.data,
+                            total: resp_total.data
+                        });
+                    });
+                } else {
+                    //failed
+                    res.status(500).send(absence_list);
+                }
             });
         } else {
             //something wrong with server

@@ -28,7 +28,7 @@ var connect = function () {
     keepAlive: true,
     useUnifiedTopology: true,	//able to retry connection
     useNewUrlParser: true,
-    dbName: 'crewmeister'};
+    dbName: 'crewmeister_mongodb'};
   mongoose.connect(DB_URL, options);
 };
 connect();
